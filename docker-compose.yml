@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  microservice22:
+    build:
+      context: .
+    ports:
+      - "3002:3002"
+    environment:
+      CLIENT_FORNISSEUR_API: "http://microservice1:3001" # Reference microservice1
+
+  mongo:
+    image: mongo
+    ports:
+      - "27018:27017" # Change to avoid conflict
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
